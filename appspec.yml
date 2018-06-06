@@ -1,0 +1,39 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/codedeploy
+hooks:
+  BeforeInstall:
+    - location: deployment/scripts/system_install.sh
+      timeout: 700
+      runas: root
+  AfterInstall:
+    - location: deployment/scripts/maintenance_enable.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/apache_configure.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/varnish_install.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/varnish_configure.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/mail_configure.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/crontab.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/deployment.sh
+      timeout: 700
+      runas: root
+  ApplicationStart:
+    - location: deployment/scripts/maintenance_disable.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/cleanup.sh
+      timeout: 300
+      runas: root
