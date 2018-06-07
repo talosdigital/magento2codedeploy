@@ -10,4 +10,4 @@ function add_host(){
 
 add_host "$PROJECT";
 
-systemctl reload varnish
+systemctl restart varnish
