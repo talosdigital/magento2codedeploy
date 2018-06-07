@@ -4,4 +4,4 @@
 cd /var/www/$PROJECT
 sudo -H -u $USER bash -c "php bin/magento maintenance:enable || true"
 
-systemctl restart varnish
+systemctl restart varnish || true
