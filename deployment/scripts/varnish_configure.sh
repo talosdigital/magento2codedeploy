@@ -2,7 +2,8 @@
 . /var/www/codedeploy/deployment/scripts/setenv.sh
 
 function add_host(){
-    if ! cat /etc/varnish/default.vcl | fgrep -q "$1"; then
+    if ! grep -Fq "backend $1" /etc/varnish/default.vcl; then
+      echo "Adding Varnish host"
       envsubst < $CODEDEPLOY/deployment/configs/varnish-template.vcl >> /etc/varnish/default.vcl
     fi
 }
