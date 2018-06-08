@@ -54,7 +54,6 @@ ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-d
 if [ ! -f "/etc/zabbix/zabbix_agentd.conf" ]; then
     rpm -ivh http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm
     yum -y install zabbix-agent
-    envsubst < $CODEDEPLOY/deployment/configs/zabbix_agentd.conf > /etc/zabbix/zabbix_agentd.conf
     firewall-cmd --zone=public --add-port=10050/tcp --permanent
     firewall-cmd --reload
 fi
