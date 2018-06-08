@@ -24,7 +24,6 @@ setsebool -P httpd_can_sendmail=1
 systemctl start firewalld
 systemctl enable firewalld
 firewall-cmd --zone=public --add-port=80/tcp --permanent
-firewall-cmd --reload
 
 # Server utils
 mkdir -p /var/www/server
@@ -32,6 +31,8 @@ echo "<?php phpinfo();" > /var/www/server/test.php
 /bin/cp $CODEDEPLOY/deployment/configs/healthcheck.html /var/www/server/
 echo "sudo goaccess /var/log/httpd/$PROJECT-access.log -o /var/www/server/goaccess.html  --log-format=COMBINED --real-time-html" > /home/centos/goaccess-$PROJECT.sh
 chmod a+x /home/centos/goaccess-$PROJECT.sh
+firewall-cmd --zone=public --add-port=7890/tcp --permanent
 
 # Ready to go!
+firewall-cmd --reload
 systemctl reload httpd

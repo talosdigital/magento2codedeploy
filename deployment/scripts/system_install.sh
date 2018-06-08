@@ -41,7 +41,7 @@ ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 # Add welcome message
 function add_welcome_message(){
     MESSAGE="figlet $1;";
-    if ! cat /home/centos/.bash_profile | fgrep -q "$MESSAGE"; then
+    if ! grep -q "$MESSAGE" /home/centos/.bash_profile; then
       echo $MESSAGE >> /home/centos/.bash_profile
     fi
 }
@@ -50,18 +50,6 @@ add_welcome_message $DEPLOYMENT_GROUP_NAME
 # CodeDeploy log access
 ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log
 
-# Nagios XI
-#if [ -d "/usr/local/nagiosx" ]; then
-#    cd /tmp
-#    wget http://assets.nagios.com/downloads/nagiosxi/agents/linux-nrpe-agent.tar.gz
-#    tar xzf linux-nrpe-agent.tar.gz
-#    cd linux-nrpe-agent
-#    sed -i 's/read -p "Allow from:  " ALLOW_INPUT/#read -p "Allow from:  " ALLOW_INPUT/g' subcomponents/install
-#    ./fullinstall -n
-#    firewall-cmd --zone=public --add-port=5666/tcp --permanent
-#    firewall-cmd --reload
-#fi
-
 # Zabbix
 if [ ! -f "/etc/zabbix/zabbix_agentd.conf" ]; then
     rpm -ivh http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm
@@ -69,7 +57,6 @@ if [ ! -f "/etc/zabbix/zabbix_agentd.conf" ]; then
     envsubst < $CODEDEPLOY/deployment/configs/zabbix_agentd.conf > /etc/zabbix/zabbix_agentd.conf
     firewall-cmd --zone=public --add-port=10050/tcp --permanent
     firewall-cmd --reload
-    systemctl restart zabbix-agent
 fi
 
 # Remove any previous deployment

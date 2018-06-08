@@ -9,6 +9,9 @@ hooks:
       timeout: 700
       runas: root
   AfterInstall:
+    - location: deployment/scripts/system_configure.sh
+      timeout: 300
+      runas: root
     - location: deployment/scripts/maintenance_enable.sh
       timeout: 300
       runas: root
