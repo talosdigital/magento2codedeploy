@@ -29,6 +29,8 @@ yum -y install php70u php70u-pdo php70u-mysqlnd \
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/bin/composer
+mkdir -p /var/www/.composer
+chown apache:apache /var/www/.composer
 
 # PHP Settings
 sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php.ini 

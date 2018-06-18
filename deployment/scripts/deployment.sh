@@ -30,7 +30,6 @@ sudo chcon -t httpd_sys_rw_content_t $TARGET/../env/$PROJECT/ $TARGET/generated/
 
 echo "Composer auth.json"
 cd $TARGET
-mkdir -p /var/www/.composer
 mv -f $TARGET/deployment/auth.json /var/www/.composer/auth.json
 chown $USER:$GROUP /var/www/.composer/auth.json
 
