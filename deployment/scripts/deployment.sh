@@ -23,7 +23,6 @@ echo "Media merge"
 cd $TARGET
 rsync -arv pub/media/* $TARGET/../env/$PROJECT/media
 rm -rf pub/media; sudo -H -u $USER bash -c "ln -s $TARGET/../env/$PROJECT/media ./pub/media  || true"
-sudo -H -u $USER bash -c "rm -rf pub/static/_po_compressor; mkdir -p pub/static/_po_compressor";
 
 # SELINUX security
 sudo chcon -t httpd_sys_content_t $TARGET -R
@@ -75,6 +74,10 @@ sudo -H -u $USER bash -c "./bin/magento setup:static-content:deploy"
 sudo -H -u $USER bash -c "./bin/magento cache:flush"
 sudo -H -u $USER bash -c "./bin/magento deploy:mode:show"
 sudo -H -u $USER bash -c "./bin/magento cache:enable"
+
+echo "Potato extension"
+cd $TARGET
+sudo -H -u $USER bash -c "rm -rf pub/static/_po_compressor; mkdir -p pub/static/_po_compressor";
 
 echo "Healthcheck file"
 cp $TARGET/deployment/configs/healthcheck.html $TARGET/
