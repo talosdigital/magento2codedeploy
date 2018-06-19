@@ -11,6 +11,10 @@ yum -y install \
     redis patch goaccess net-snmp \
     openssl-devel xinetd unzip jq
 
+
+# Firewall
+systemctl start firewalld
+
 # Install Apache
 yum -y install httpd mod_ssl openssl
 systemctl enable httpd.service
