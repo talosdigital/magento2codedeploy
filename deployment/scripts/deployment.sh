@@ -74,6 +74,9 @@ sudo -H -u $USER bash -c "./bin/magento cache:flush"
 sudo -H -u $USER bash -c "./bin/magento deploy:mode:show"
 sudo -H -u $USER bash -c "./bin/magento cache:enable"
 
+# Varnish config
+sudo -H -u $USER bash -c "bin/magento setup:config:set --http-cache-hosts=127.0.0.1:6081"
+
 echo "Potato extension"
 cd $TARGET
 sudo -H -u $USER bash -c "rm -rf pub/static/_po_compressor; mkdir -p pub/static/_po_compressor";
