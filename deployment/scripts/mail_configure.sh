@@ -10,9 +10,16 @@ postconf -e 'smtp_use_tls = yes'
 postconf -e 'smtp_tls_security_level = encrypt'
 postconf -e 'smtp_tls_note_starttls_offer = yes'
 postconf -e 'smtp_tls_CAfile = /etc/ssl/certs/ca-bundle.crt'
+postconf -e 'smtp_generic_maps = hash:/etc/postfix/generic'
 
+# Postfix generic table
+echo apache $SMTP_FROM > /etc/postfix/generic
+postmap /etc/postfix/generic
+
+# SMTP Authentication
 /bin/cp $CODEDEPLOY/deployment/sasl_passwd /etc/postfix/sasl_passwd
 postmap hash:/etc/postfix/sasl_passwd
 chown root:root /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
 chmod 0600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+
 systemctl reload postfix
