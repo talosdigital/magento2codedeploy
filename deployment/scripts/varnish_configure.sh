@@ -1,14 +1,21 @@
 #!/bin/bash
 . /var/www/codedeploy/deployment/scripts/setenv.sh
 
-# TODO: use templates and split by target
+
 function add_host(){
-    if ! grep -q "backend $1" /etc/varnish/default.vcl; then
+    if ! grep -q "vcl.load $1" /etc/varnish/default.vcl; then
       echo "Adding Varnish host"
-      envsubst < $CODEDEPLOY/deployment/configs/varnish-template.vcl >> /etc/varnish/default.vcl
+      echo "vcl.load $1 /etc/varnish/$1.vcl"
     fi
 }
 
 add_host "$PROJECT";
+if [ "$VARNISH_REDIRECT_WWW" = true ] ; then
+    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-www-redirect.vcl > /etc/varnish/$PROJECT.vcl
+    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-template.vcl >> /etc/varnish/$PROJECT.vcl
+else
+    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-non-www-redirect.vcl > /etc/varnish/$PROJECT.vcl
+    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-template.vcl >> /etc/varnish/$PROJECT.vcl
+fi
 
 systemctl restart varnish

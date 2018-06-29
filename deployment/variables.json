@@ -2,5 +2,6 @@
   "SMTP_SERVER" : "email-smtp.us-east-1.amazonaws.com:587",
   "SMTP_FROM" : "no-reply@example.com",
   "WHITELIST_IP" : "0.0.0.0",
-  "ZABBIX_SERVER" : "x.x.x.x"
+  "ZABBIX_SERVER" : "x.x.x.x",
+  "VARNISH_REDIRECT_WWW" : true
 }
