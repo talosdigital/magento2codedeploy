@@ -10,7 +10,9 @@ if [ ! -f "/etc/varnish/default.vcl" ]; then
 
     firewall-cmd --zone=public --add-port=6081/tcp --permanent
     firewall-cmd --reload
+
+    systemctl enable varnish
 fi
 
-/bin/cp $CODEDEPLOY/deployment/configs/varnish/varnish-default.vcl /etc/varnish/default.vcl
-cat $CODEDEPLOY/deployment/configs/varnish/varnish-magento.vcl >> /etc/varnish/default.vcl
+#/bin/cp $CODEDEPLOY/deployment/configs/varnish/varnish-default.vcl /etc/varnish/default.vcl
+#cat $CODEDEPLOY/deployment/configs/varnish/varnish-magento.vcl >> /etc/varnish/default.vcl

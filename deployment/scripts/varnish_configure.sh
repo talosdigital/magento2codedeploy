@@ -9,13 +9,13 @@ function add_host(){
     fi
 }
 
-add_host "$PROJECT";
-if [ "$VARNISH_REDIRECT_WWW" = true ] ; then
-    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-www-redirect.vcl > /etc/varnish/$PROJECT.vcl
-    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-template.vcl >> /etc/varnish/$PROJECT.vcl
-else
-    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-non-www-redirect.vcl > /etc/varnish/$PROJECT.vcl
-    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-template.vcl >> /etc/varnish/$PROJECT.vcl
-fi
+#if [ "$VARNISH_REDIRECT_WWW" = true ] ; then
+#    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-www-redirect.vcl > /etc/varnish/$PROJECT.vcl
+#    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-template.vcl >> /etc/varnish/$PROJECT.vcl
+#else
+#    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-non-www-redirect.vcl > /etc/varnish/$PROJECT.vcl
+#    envsubst < $CODEDEPLOY/deployment/configs/varnish/varnish-template.vcl >> /etc/varnish/$PROJECT.vcl
+#fi
+#add_host "$PROJECT";
 
 systemctl restart varnish
