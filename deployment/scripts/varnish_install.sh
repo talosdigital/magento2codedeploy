@@ -13,4 +13,3 @@ if [ ! -f "/etc/varnish/default.vcl" ]; then
 fi
 
 /bin/cp $CODEDEPLOY/deployment/configs/varnish/varnish-default.vcl /etc/varnish/default.vcl
-cat $CODEDEPLOY/deployment/configs/varnish/varnish-magento.vcl >> /etc/varnish/default.vcl
