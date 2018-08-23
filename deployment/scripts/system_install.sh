@@ -13,6 +13,7 @@ yum -y install \
 
 
 # Firewall
+systemctl restart dbus
 systemctl start firewalld
 
 # Install Apache
