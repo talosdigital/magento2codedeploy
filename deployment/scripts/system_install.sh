@@ -19,6 +19,7 @@ systemctl start firewalld
 # Install Apache
 yum -y install httpd mod_ssl openssl
 systemctl enable httpd.service
+systemctl stop httpd.service
 usermod -d /var/www apache
 systemctl start httpd
 
