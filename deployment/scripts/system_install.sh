@@ -50,9 +50,9 @@ ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 function add_welcome_message(){
     MESSAGE="figlet $1;";
     if grep -q "#Banner" /etc/ssh/sshd_config; then
-        sed -i 's/#Banner none/Banner \/etc\/ssh\/sshd-banner/g' /etc/ssh/sshd_config
+        sed -i 's/#Banner none/Banner \/etc\/ssh\/sshd_banner/g' /etc/ssh/sshd_config
     fi
-    echo $MESSAGE > /etc/ssh/sshd-banner
+    echo $MESSAGE > /etc/ssh/sshd_banner
 }
 add_welcome_message $DEPLOYMENT_GROUP_NAME
 
