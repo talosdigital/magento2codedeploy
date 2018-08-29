@@ -39,7 +39,7 @@ mkdir -p /var/www/.composer
 chown apache:apache /var/www/.composer
 
 # PHP Settings
-sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php.ini 
+sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php.ini
 sed -i 's/;date.timezone =/date.timezone = America\/Bogota/g' /etc/php.ini
 
 # Timezone
@@ -49,9 +49,10 @@ ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 # Add welcome message
 function add_welcome_message(){
     MESSAGE="figlet $1;";
-    if ! grep -q "$MESSAGE" /home/centos/.bash_profile; then
-      echo $MESSAGE >> /home/centos/.bash_profile
+    if grep -q "#Banner" /etc/ssh/sshd_config; then
+        sed -i 's/#Banner none/Banner \/etc\/ssh\/sshd-banner/g' /etc/ssh/sshd_config
     fi
+    echo $MESSAGE > /etc/ssh/sshd-banner
 }
 add_welcome_message $DEPLOYMENT_GROUP_NAME
 
@@ -68,3 +69,4 @@ fi
 
 # Remove any previous deployment
 rm -rf /var/www/codedeploy
+
