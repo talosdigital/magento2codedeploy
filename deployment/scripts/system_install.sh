@@ -48,14 +48,13 @@ ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 
 # Add welcome message
 function add_welcome_message(){
-    MESSAGE="figlet $1;";
-    if grep -q "#Banner" /etc/ssh/sshd_config; then
-        sed -i 's/#Banner none/Banner \/etc\/ssh\/sshd_banner/g' /etc/ssh/sshd_config
+    if ! grep -q "Banner /etc/ssh/sshd_banner" /etc/ssh/sshd_config; then
+        echo 'Banner /etc/ssh/sshd_banner' >> /etc/ssh/sshd_config
     fi
-    echo $MESSAGE > /etc/ssh/sshd_banner
+    echo $(figlet $1) > /etc/ssh/sshd_banner
 }
 add_welcome_message $DEPLOYMENT_GROUP_NAME
-systemctl restart sshd
+systemctl reload sshd
 
 # CodeDeploy log access
 ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log
