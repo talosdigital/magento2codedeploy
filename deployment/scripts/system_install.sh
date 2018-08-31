@@ -55,6 +55,7 @@ function add_welcome_message(){
     echo $MESSAGE > /etc/ssh/sshd_banner
 }
 add_welcome_message $DEPLOYMENT_GROUP_NAME
+systemctl restart sshd
 
 # CodeDeploy log access
 ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log
