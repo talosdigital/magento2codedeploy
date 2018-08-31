@@ -47,13 +47,10 @@ mv /etc/localtime /etc/localtime.bak
 ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 
 # Add welcome message
-function add_welcome_message(){
-    if ! grep -q "Banner /etc/ssh/sshd_banner" /etc/ssh/sshd_config; then
-        echo 'Banner /etc/ssh/sshd_banner' >> /etc/ssh/sshd_config
-    fi
-    echo $(figlet $1) > /etc/ssh/sshd_banner
-}
-add_welcome_message $DEPLOYMENT_GROUP_NAME
+if ! grep -q "Banner /etc/ssh/sshd_banner" /etc/ssh/sshd_config; then
+	echo 'Banner /etc/ssh/sshd_banner' >> /etc/ssh/sshd_config
+fi
+echo "$(figlet $DEPLOYMENT_GROUP_NAME)" > /etc/ssh/sshd_banner
 systemctl reload sshd
 
 # CodeDeploy log access
