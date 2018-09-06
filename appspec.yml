@@ -37,6 +37,9 @@ hooks:
     - location: deployment/scripts/maintenance_disable.sh
       timeout: 300
       runas: root
+    - location: deployment/scripts/cache_flush.sh
+      timeout: 300
+      runas: root
     - location: deployment/scripts/cleanup.sh
       timeout: 300
       runas: root
