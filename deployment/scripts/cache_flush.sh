@@ -2,9 +2,9 @@
 
 . /var/www/codedeploy/deployment/scripts/setenv.sh
 
-cdnArray=(${CDN//,/ })
+CDN_ARRAY=(${CDN//,/ })
 
-for id in ${cdnArray[*]}; do
-	aws cloudfront create-invalidation --distribution-id $id --path "/*"
+for ID in ${CDN_ARRAY[*]}; do
+	aws cloudfront create-invalidation --distribution-id $ID --path "/*"
 done
 
