@@ -26,11 +26,11 @@ systemctl start httpd
 # Install PHP 7 and Modules
 yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
 yum -y update
-yum -y install php70u php70u-pdo php70u-mysqlnd \
-    php70u-opcache php70u-xml php70u-mcrypt \
-    php70u-gd php70u-devel php70u-mysql \
-    php70u-intl php70u-mbstring php70u-bcmath \
-    php70u-json php70u-iconv php70u-soap
+yum -y install php71u php71u-pdo php71u-mysqlnd \
+    php71u-opcache php71u-xml php71u-mcrypt \
+    php71u-gd php71u-devel php71u-mysql \
+    php71u-intl php71u-mbstring php71u-bcmath \
+    php71u-json php71u-iconv php71u-soap
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
