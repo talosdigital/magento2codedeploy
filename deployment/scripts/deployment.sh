@@ -30,7 +30,7 @@ sudo chcon -t httpd_sys_rw_content_t $TARGET/../env/$PROJECT/ $TARGET/generated/
 
 echo "Composer auth.json"
 cd $TARGET
-mv -f $TARGET/deployment/auth.json /var/www/.composer/auth.json
+/bin/cp -f $TARGET/deployment/auth.json /var/www/.composer/auth.json
 chown $USER:$GROUP /var/www/.composer/auth.json
 
 echo "Dependencies"
@@ -43,6 +43,10 @@ cd $TARGET
 sudo -H -u $USER bash -c "composer install --no-dev"
 cd update
 sudo -H -u $USER bash -c "composer install --no-dev"
+
+# Needed to run `magento sampledata:deploy` in restore jobs
+/bin/cp -f $TARGET/deployment/auth.json $TARGET/var/composer_home/auth.json
+chown $USER:$GROUP $TARGET/var/composer_home/auth.json
 
 cd $TARGET
 mv -f $TARGET/deployment/configs/htaccess-media ./pub/media/.htaccess
