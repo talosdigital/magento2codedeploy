@@ -38,6 +38,10 @@ mv composer.phar /usr/bin/composer
 mkdir -p /var/www/.composer
 chown apache:apache /var/www/.composer
 
+# Update PIP and AWS CLI
+pip install --upgrade pip
+pip install --upgrade awscli
+
 # PHP Settings
 sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php.ini
 sed -i 's/;date.timezone =/date.timezone = America\/Bogota/g' /etc/php.ini
