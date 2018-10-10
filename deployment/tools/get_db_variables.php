@@ -1,5 +1,5 @@
 <?php
-	$var_envs = (include 'env.php');
+	$var_envs = (include $argv[1]);
 	$db_vars = $var_envs['db']['connection']['default']['host'] . ' ' .
 		$var_envs['db']['connection']['default']['dbname'] . ' ' .
 		$var_envs['db']['connection']['default']['username'] . ' ' .
