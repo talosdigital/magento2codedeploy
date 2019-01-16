@@ -9,8 +9,8 @@ yum -y install \
     awscli firewalld mariadb psmisc \
     mailx bzip2 cyrus-sasl-plain telnet \
     redis patch goaccess net-snmp \
-    openssl-devel xinetd unzip jq
-
+    openssl-devel xinetd unzip jq \
+    python-pip
 
 # Firewall
 systemctl restart dbus
@@ -19,12 +19,11 @@ systemctl start firewalld
 # Install Apache
 yum -y install httpd mod_ssl openssl
 systemctl enable httpd.service
-systemctl stop httpd.service
 usermod -d /var/www apache
 systemctl start httpd
 
 # Install PHP 7 and Modules
-yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
+yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm || true
 yum -y update
 yum -y install php71u php71u-pdo php71u-mysqlnd \
     php71u-opcache php71u-xml php71u-mcrypt \
@@ -58,7 +57,7 @@ echo "$(figlet $DEPLOYMENT_GROUP_NAME)" > /etc/ssh/sshd_banner
 systemctl reload sshd
 
 # CodeDeploy log access
-ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log
+ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log || true
 
 # Zabbix
 if [ ! -f "/etc/zabbix/zabbix_agentd.conf" ]; then
