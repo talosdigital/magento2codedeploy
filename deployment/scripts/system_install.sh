@@ -39,7 +39,7 @@ chown apache:apache /var/www/.composer
 
 # Update PIP and AWS CLI
 pip install --upgrade pip
-pip install --upgrade awscli
+pip install --upgrade awscli shyaml
 
 # PHP Settings
 sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php.ini
