@@ -1,6 +1,6 @@
 #!/bin/bash
-
 . /var/www/codedeploy/deployment/scripts/setenv.sh
+figlet "Cache Flush"
 
 CDN_ARRAY=(${CDN//,/ })
 
