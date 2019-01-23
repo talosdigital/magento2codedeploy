@@ -31,7 +31,7 @@ hooks:
       timeout: 300
       runas: root
     - location: deployment/scripts/deployment.sh
-      timeout: 900
+      timeout: 1200
       runas: root
   ApplicationStart:
     - location: deployment/scripts/maintenance_disable.sh
