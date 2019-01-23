@@ -2,6 +2,6 @@
 . /var/www/codedeploy/deployment/scripts/setenv.sh
 figlet "Varnish Configure"
 
-cat $CODEDEPLOY/varnish.vcl >> /etc/varnish/default.vcl
+cat $CODEDEPLOY/varnish.vcl >> /etc/varnish/default.vcl || true
 
-systemctl restart varnish
+systemctl reload varnish
