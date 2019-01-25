@@ -70,14 +70,11 @@ cd $TARGET
 chmod a+x ./bin/magento
 sudo -H -u $USER bash -c "./bin/magento setup:upgrade"
 
-echo "Production mode"
-sudo -H -u $USER bash -c "./bin/magento deploy:mode:set production -s"
-sudo -H -u $USER bash -c "./bin/magento setup:di:compile"
-sudo rm -rf pub/static/* var/view_preprocessed
-sudo -H -u $USER bash -c "./bin/magento setup:static-content:deploy"
+echo "developer mode"
+sudo -H -u $USER bash -c "./bin/magento deploy:mode:set developer"
+sudo rm -rf pub/static/* generated/* var/view_preprocessed var/cache var/page_cache
 sudo -H -u $USER bash -c "./bin/magento cache:flush"
 sudo -H -u $USER bash -c "./bin/magento deploy:mode:show"
-sudo -H -u $USER bash -c "./bin/magento cache:enable"
 
 echo "Potato extension"
 cd $TARGET
