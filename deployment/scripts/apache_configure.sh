@@ -1,5 +1,6 @@
 #!/bin/bash
 . /var/www/codedeploy/deployment/scripts/setenv.sh
+figlet "Apache Configure"
 
 # DocumentRoot
 mkdir -p /var/www

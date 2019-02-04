@@ -1,5 +1,6 @@
 #!/bin/bash
 . /var/www/codedeploy/deployment/scripts/setenv.sh
+figlet "Varnish Install"
 
 if [ ! -f "/etc/varnish/default.vcl" ]; then
     yum install -y epel-release pygpgme yum-utils

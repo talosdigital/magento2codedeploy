@@ -1,12 +1,14 @@
 #!/bin/bash
 . /var/www/codedeploy/deployment/scripts/setenv.sh
+figlet "Crontab"
 
 function add_cron(){
 
     NEW_CRON_ENTRY=$1;
     if ! crontab -u apache -l | grep -Fq "$NEW_CRON_ENTRY"; then
       echo "Adding new cron jobs"
-      crontab -u apache -l > allcrons
+      echo "" > allcrons
+      crontab -u apache -l >> allcrons || true
       echo "$NEW_CRON_ENTRY" >> allcrons
       crontab -u apache allcrons
       rm -rf allcrons

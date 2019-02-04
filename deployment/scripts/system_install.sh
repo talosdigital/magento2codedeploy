@@ -9,8 +9,8 @@ yum -y install \
     awscli firewalld mariadb psmisc \
     mailx bzip2 cyrus-sasl-plain telnet \
     redis patch goaccess net-snmp \
-    openssl-devel xinetd unzip jq
-
+    openssl-devel xinetd unzip jq \
+    python-pip
 
 # Firewall
 systemctl restart dbus
@@ -19,7 +19,6 @@ systemctl start firewalld
 # Install Apache
 yum -y install httpd mod_ssl openssl
 systemctl enable httpd.service
-systemctl stop httpd.service
 usermod -d /var/www apache
 systemctl start httpd
 
@@ -38,6 +37,10 @@ mv composer.phar /usr/bin/composer
 mkdir -p /var/www/.composer
 chown apache:apache /var/www/.composer
 
+# Update PIP and AWS CLI
+pip install --upgrade pip
+pip install --upgrade awscli shyaml
+
 # PHP Settings
 sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php.ini
 sed -i 's/;date.timezone =/date.timezone = America\/Bogota/g' /etc/php.ini
@@ -54,7 +57,7 @@ echo "$(figlet $DEPLOYMENT_GROUP_NAME)" > /etc/ssh/sshd_banner
 systemctl reload sshd
 
 # CodeDeploy log access
-ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log
+ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log || true
 
 # Zabbix
 if [ ! -f "/etc/zabbix/zabbix_agentd.conf" ]; then
