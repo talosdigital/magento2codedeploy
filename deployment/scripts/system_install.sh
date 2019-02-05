@@ -23,13 +23,24 @@ usermod -d /var/www apache
 systemctl start httpd
 
 # Install PHP 7 and Modules
-yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/ius-release-1.0-13.ius.centos7.noarch.rpm
 yum -y update
-yum -y install php70u php70u-pdo php70u-mysqlnd \
-    php70u-opcache php70u-xml php70u-mcrypt \
-    php70u-gd php70u-devel php70u-mysql \
-    php70u-intl php70u-mbstring php70u-bcmath \
-    php70u-json php70u-iconv php70u-soap
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-cli-7.0.33-1.ius.centos7.x86_64.rpm
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-common-7.0.33-1.ius.centos7.x86_64.rpm
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-pdo-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mysqlnd-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-opcache-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-xml-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mcrypt-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-gd-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-devel-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mysql-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-intl-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-mbstring-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-bcmath-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-json-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-iconv-7.0.33-1.ius.centos7.x86_64.rpm 
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-soap-7.0.33-1.ius.centos7.x86_64.rpm 
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
