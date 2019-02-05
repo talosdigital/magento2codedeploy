@@ -23,7 +23,7 @@ usermod -d /var/www apache
 systemctl start httpd
 
 # Install PHP 7 and Modules
-yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/ius-release-1.0-13.ius.centos7.noarch.rpm
+yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/ius-release-1.0-13.ius.centos7.noarch.rpm || true
 yum -y update
 yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-cli-7.0.33-1.ius.centos7.x86_64.rpm
 yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-common-7.0.33-1.ius.centos7.x86_64.rpm
