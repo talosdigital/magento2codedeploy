@@ -46,7 +46,7 @@ yum install -y https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70
 	https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-xmlrpc-7.0.33-1.ius.centos7.x86_64.rpm \
 	https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-pear-1.10.5-1.ius.centos7.noarch.rpm \
 	https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/php70u-pecl-imagick-3.4.3-1.ius.centos7.x86_64.rpm \
-	https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/mod_php70u-7.0.33-1.ius.centos7.x86_64.rpm
+	https://dl.iuscommunity.org/pub/ius/archive/CentOS/7/x86_64/mod_php70u-7.0.33-1.ius.centos7.x86_64.rpm || true
 	
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
