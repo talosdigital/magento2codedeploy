@@ -46,7 +46,7 @@ cd update
 sudo -H -u $USER bash -c "composer install --no-dev"
 
 # Needed to run `magento sampledata:deploy` in restore jobs
-/bin/cp -f $TARGET/deployment/auth.json $TARGET/var/composer_home/auth.json
+/bin/cp -f $TARGET/deployment/auth.json $TARGET/var/composer_home/auth.json || true
 chown $USER:$GROUP $TARGET/var/composer_home/auth.json
 
 cd $TARGET
