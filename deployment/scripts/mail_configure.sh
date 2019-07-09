@@ -1,5 +1,6 @@
 #!/bin/bash
 . /var/www/codedeploy/deployment/scripts/setenv.sh
+figlet "Mail Configure"
 
 # Mail MTA
 postconf -e "relayhost = $SMTP_SERVER"

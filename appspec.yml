@@ -10,18 +10,12 @@ hooks:
       runas: root
   AfterInstall:
     - location: deployment/scripts/system_configure.sh
-      timeout: 300
+      timeout: 700
       runas: root
     - location: deployment/scripts/maintenance_enable.sh
       timeout: 300
       runas: root
     - location: deployment/scripts/apache_configure.sh
-      timeout: 300
-      runas: root
-    - location: deployment/scripts/varnish_install.sh
-      timeout: 300
-      runas: root
-    - location: deployment/scripts/varnish_configure.sh
       timeout: 300
       runas: root
     - location: deployment/scripts/mail_configure.sh
@@ -35,6 +29,9 @@ hooks:
       runas: root
   ApplicationStart:
     - location: deployment/scripts/maintenance_disable.sh
+      timeout: 300
+      runas: root
+    - location: deployment/scripts/cache_flush.sh
       timeout: 300
       runas: root
     - location: deployment/scripts/cleanup.sh

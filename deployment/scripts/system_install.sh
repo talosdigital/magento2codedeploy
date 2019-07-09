@@ -13,6 +13,7 @@ yum -y install \
 
 
 # Firewall
+systemctl restart dbus
 systemctl start firewalld
 
 # Install Apache
@@ -36,6 +37,10 @@ mv composer.phar /usr/bin/composer
 mkdir -p /var/www/.composer
 chown apache:apache /var/www/.composer
 
+# Update PIP and AWS CLI
+pip install --upgrade pip
+pip install --upgrade awscli shyaml
+
 # PHP Settings
 sed -i 's/memory_limit = 128M/memory_limit = -1/g' /etc/php.ini 
 sed -i 's/;date.timezone =/date.timezone = America\/Bogota/g' /etc/php.ini
@@ -45,23 +50,23 @@ mv /etc/localtime /etc/localtime.bak
 ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
 
 # Add welcome message
-function add_welcome_message(){
-    MESSAGE="figlet $1;";
-    if ! grep -q "$MESSAGE" /home/centos/.bash_profile; then
-      echo $MESSAGE >> /home/centos/.bash_profile
+if ! grep -q "Banner /etc/ssh/sshd_banner" /etc/ssh/sshd_config; then
+	echo 'Banner /etc/ssh/sshd_banner' >> /etc/ssh/sshd_config
     fi
-}
-add_welcome_message $DEPLOYMENT_GROUP_NAME
+echo "$(figlet $DEPLOYMENT_GROUP_NAME)" > /etc/ssh/sshd_banner
+systemctl reload sshd
 
 # CodeDeploy log access
 ln -sfn /opt/codedeploy-agent/deployment-root/deployment-logs/codedeploy-agent-deployments.log /home/centos/codedeploy-agent-deployments.log
 
 # Zabbix
 if [ ! -f "/etc/zabbix/zabbix_agentd.conf" ]; then
-    rpm -ivh http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm
+    rpm -ivh https://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-release-3.4-2.el7.noarch.rpm
     yum -y install zabbix-agent
     firewall-cmd --zone=public --add-port=10050/tcp --permanent
     firewall-cmd --reload
+    systemctl start zabbix-agent
+    systemctl enable zabbix-agent
 fi
 
 # Remove any previous deployment
