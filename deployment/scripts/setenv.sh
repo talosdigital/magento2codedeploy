@@ -21,3 +21,5 @@ export GROUP=apache
 for s in $(cat deployment/variables.json | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
     export $s
 done
+
+date
