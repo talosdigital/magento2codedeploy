@@ -1,5 +1,7 @@
 #!/bin/bash
 
+date
+
 # System update
 yum -y update
 
