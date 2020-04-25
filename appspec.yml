@@ -18,12 +18,6 @@ hooks:
     - location: deployment/scripts/apache_configure.sh
       timeout: 300
       runas: root
-    - location: deployment/scripts/varnish_install.sh
-      timeout: 300
-      runas: root
-    - location: deployment/scripts/varnish_configure.sh
-      timeout: 300
-      runas: root
     - location: deployment/scripts/mail_configure.sh
       timeout: 300
       runas: root
