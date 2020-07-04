@@ -3,8 +3,8 @@
 figlet "Cleanup"
 
 # Remove deployment scripts and leave a copy for debugging
-rm -rf /var/www/deployment-scripts
-mv /var/www/$PROJECT/deployment ../deployment-scripts
+rm -rf /var/www/deployment
+mv /var/www/$PROJECT/deployment ../deployment
 
 # Remove any previous deployment
 rm -f /var/www/codedeploy
