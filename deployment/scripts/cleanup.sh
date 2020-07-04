@@ -3,4 +3,3 @@
 figlet "Cleanup"
 
 rm -rf /var/www/$PROJECT/deployment
-rm -f /var/www/codedeploy
