@@ -4,10 +4,6 @@ files:
   - source: /
     destination: /var/www/codedeploy
 hooks:
-  BeforeInstall:
-    - location: deployment/scripts/system_install.sh
-      timeout: 700
-      runas: root
   AfterInstall:
     - location: deployment/scripts/system_configure.sh
       timeout: 300
