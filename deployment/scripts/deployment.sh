@@ -1,6 +1,6 @@
 #!/bin/bash
-. /var/www/codedeploy/deployment/scripts/setenv.sh
-figlet "Deployment"
+. /setenv.sh
+figlet "Deployment" || true
 
 echo "Deployment $TMPTARGET >>> $TARGET"
 

@@ -1,8 +1,8 @@
 #!/bin/bash
-. /var/www/codedeploy/deployment/scripts/setenv.sh
-figlet "Maintenance Enable"
+. /setenv.sh
+figlet "Maintenance Enable" || true
 
-cd /var/www/$PROJECT
+cd $TARGET
 sudo -H -u $USER bash -c "php bin/magento maintenance:enable || true"
 
-systemctl restart varnish || true
+
