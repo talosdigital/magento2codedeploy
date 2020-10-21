@@ -1,7 +1,6 @@
-#!/bin/bash
-SCRIPT_DIR=$( cd ${0%/*} && pwd -P )
-
-export CODEDEPLOY=$SCRIPT_DIR/../../
+#!/bin/sh
+export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+export CODEDEPLOY=$DIR/../../
 
 # Target
 cd $CODEDEPLOY
