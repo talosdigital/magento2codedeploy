@@ -11,6 +11,7 @@ export PROJECT_WITHOUT_WWW=$(echo $PROJECT | sed 's/www\.//g')
 # Deployment paths
 export TARGET=$HOME/$PROJECT
 export TMPTARGET=$CODEDEPLOY
+export BACKUP=$HOME/$PROJECT-backup
 
 # Web server user/group
 export USER=apache
