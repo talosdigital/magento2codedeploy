@@ -1,5 +1,7 @@
 #!/bin/bash
-export CODEDEPLOY=$HOME/codedeploy
+SCRIPT_DIR=$( cd ${0%/*} && pwd -P )
+
+export CODEDEPLOY=$SCRIPT_DIR/../../
 
 # Target
 cd $CODEDEPLOY
