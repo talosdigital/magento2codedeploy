@@ -19,4 +19,4 @@ export GROUP=apache
 
 date
 
-. ./setenv-project.sh || true
+. $DIR/setenv-project.sh || true
